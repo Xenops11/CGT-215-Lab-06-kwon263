@@ -27,16 +27,17 @@ int main() {
 	foregroundImage = foregroundTex.copyToImage();
 
 	Vector2u sz = backgroundImage.getSize();
-
+	// Get the green screen background color from corner of the image
 	Color greenScreenColor = foregroundImage.getPixel(0, 0);
 
 	for (int y = 0; y < sz.y; y++) {
 		for (int x = 0; x < sz.x; x++) {
 			// These two loops will run the code inside for each pixel in the background image
 				// You can access the current pixel at x,y like so:
-				Color example = foregroundImage.getPixel(x, y);
+			Color example = foregroundImage.getPixel(x, y);
 
 			// Color objects store the individual channel values like example.r example.g and example.b
+			// If the pixel matches the green screen color, replace it with the background pixel
 			if (example == greenScreenColor) {
 				Color bgPixel = backgroundImage.getPixel(x, y);
 				foregroundImage.setPixel(x, y, bgPixel);
